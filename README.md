@@ -3,7 +3,7 @@
 This repo contains the documents for Kylin Network. Currently, only documents for Web3 Open Grants are available.
 
 
-| **Deliverable**                          | Link                                                         | Notes                                                        |
+| **Deliverable**                          | Descriptions                                                         | Links                                                        |
 | ---------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | License                                  | Apache License 2.0       | https://github.com/Kylin-Network/kylin-node/blob/main/LICENSE                                     |
 | Documentation                            | Includes the describtion of how it works. | https://github.com/Kylin-Network/documents/blob/main/How-does-Kylin-Network-work-with-Substrate.md                     |
