@@ -106,7 +106,9 @@ For contract development and compilation, please refer to the **Compling Contrac
 2. upload <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
 3. upload <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
 
-<img src="graphics/kylin-market-frontend-deploy-market-service-coontract.png" style="zoom:50%;" />
+<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-1.png" style="zoom:50%;" />
+
+<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-2.png" style="zoom:50%;" />
 
 After deploying the contract, set the contract address to the **OracleMarketAddress** field in *Settings->Developer*.
 
