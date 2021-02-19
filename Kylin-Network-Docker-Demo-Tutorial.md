@@ -1,6 +1,6 @@
 # Download Docker Image
 
-https://drive.google.com/file/d/1sdTbaEhWZdToZ3ASeoNerOeZwfNy4KPN/view?usp=sharing
+https://drive.google.com/drive/folders/1CtuRb16zX36ZafaAZt_CpQIuW8wKsbFG?usp=sharing
 
 # Load the docker image
 ```
@@ -8,6 +8,9 @@ docker load < kylin-node.tar.gz
 ```
 # Download the docker-compose configuration file
 https://github.com/Kylin-Network/kylin-node/blob/main/scripts/docker-compose.yml
+
+By wget
+`wget https://raw.githubusercontent.com/Kylin-Network/kylin-node/main/scripts/docker-compose.yml`
 
 # Prepare the kylin-data-proxy.env file
 It is in **the same directory as docker-compose.yml**.
@@ -100,8 +103,8 @@ Upload the previously compiled contract file wasm to the chain and perform the i
 For contract development and compilation, please refer to the **Compling Contracts** section of **Kylin Network Demo Tuorial** doc. 
 
 1. *Developer->Contracts->Upload WASM*
-2. upload <a href="metadata.json" target="_blank">metadata.json</a> file 
-3. upload <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file 
+2. upload <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
+3. upload <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
 
 <img src="graphics/kylin-market-frontend-deploy-market-service-coontract.png" style="zoom:50%;" />
 
