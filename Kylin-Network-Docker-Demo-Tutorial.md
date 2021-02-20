@@ -75,6 +75,84 @@ The test account is
 # Transferring funds to a test account
 <img src="graphics/kylin-market-frontend-transfer-to-test-account.png" style="zoom:50%;" />
 
+
+
+## Insert ocw submitters
+
+OCW requires a valid account to store the fetched data to the chain. In dev mode, you need to call `author_insertKey` to insert a valid account. If this account is not added, the following error message will be displayed at the terminal running kylin-node.
+
+```
+ERROR No local accounts available. Consider adding one via `author_insertKey` RPC.
+```
+
+Insert OCW submitters can be done on the web UI or using curl.
+
+### **curl**
+
+Assuming that the kylin-node service is running on port 9933 on the local machine
+
+```
+# insert aura key
+curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -X POST  --data '{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "aura",
+    "clip organ olive upper oak void inject side suit toilet stick narrow",
+    "0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e"
+  ]
+}'
+
+# insert gran key
+curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -X POST  --data '{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "gran",
+    "clip organ olive upper oak void inject side suit toilet stick narrow",
+    "0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781"
+  ]
+}'
+
+# insert ocw price_fetch key
+curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -X POST  --data '{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "ocpf",
+    "clip organ olive upper oak void inject side suit toilet stick narrow",
+    "0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e"
+  ]
+}'
+
+# insert ocw data_fetch key
+curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -X POST  --data '{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "dftc",
+    "clip organ olive upper oak void inject side suit toilet stick narrow",
+    "0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e"
+  ]
+}'
+```
+
+The parameters that need to be adjusted for the call are in the param.
+
+* KeyType: the KeyTypeId of the OCW module, since there are two different OCWs in this demo, we need to add an account for each OCW.
+* Suri: the helper of the account.
+* PublicKey: the public key of the account, a string starting with 0x.
+
+After inserting the account, you also need to **fill the account with a certain balance to pay for the data uploading cost**.
+
+### *Web UI*
+
+*Web UI* and *curl* use the same parameters, the specific location to call is in *Developer* -> *RPC calls*, select *author* on the left, select *insertKey* in the RPC selection on the right, and then fill in the data in the corresponding dialog box on the page and then sign and submit.
+
 # Add fetch external data source
 Kylin can upload the data source to the chain through an external call (Extrinsics).
 
