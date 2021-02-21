@@ -161,18 +161,73 @@ Kylin can upload the data source to the chain through an external call (Extrinsi
 3. the url of the data source needs to be converted to hex format.
 
 ```
+BTC-price
 URL: https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD
-Hex:0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d425443267473796d733d555344
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d425443267473796d733d555344
+
+ETH-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d455448267473796d733d555344
+
+XAP-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=XAP&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d584150267473796d733d555344
+
+BCH-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=BCH&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d424348267473796d733d555344
+
+LTC-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d4c5443267473796d733d555344
+
+EOS-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d454f53267473796d733d555344
+
+XMR-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d584d52267473796d733d555344
+
 ```
 <img src="graphics/kylin-market-frontend-add-external-data-sources.png" style="zoom:50%;" />
 
+
 # Querying external data source results on the chain
 
-Kylin provides a friendly GUI to query the chain data.
+you can query oracle data from chain state. *Developer->Chain state->Storage*, select *kylinOracleModule->requestedOffchainData(u64): DataInfo*.
+
+<img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
+
+But kylin provides a friendly GUI to query the chain data.
 1. Network->Oracle data sources
 2. Fill in dataId(10000000) to query the chain results of external data source.
 
 <img src="graphics/kylin-market-frontend-query-chain-result.png" style="zoom:50%;" />
+
+
+# Add kylin provided data source
+Some data has been provided by kylin, like some exchange's orders. It is more convenience for developers to use in their Dapps. These data is proxyed by kylin.
+
+1. *Developer->Extrinsics*,
+2. the service provided by *kylinOcwModule*
+TODO 3. add proxy data source from kylin.
+
+```
+BTC-price
+URL: https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD
+Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d425443267473796d733d555344
+
+```
+<img src="graphics/kylin-market-frontend-add-external-data-sources.png" style="zoom:50%;" />
+
+
+# Querying kylin provided data on the chain
+
+you can query oracle data from chain state. *Developer->Chain state->Storage*, select *kylinOcwModule->rslt(Bytes): (AccountId,Bytes)*.
+
+<img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
+
 
 # Deploy marketplace service contract
 
@@ -181,8 +236,8 @@ Upload the previously compiled contract file wasm to the chain and perform the i
 For contract development and compilation, please refer to the **Compling Contracts** section of **Kylin Network Demo Tuorial** doc. 
 
 1. *Developer->Contracts->Upload WASM*
-2. upload <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
-3. upload <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
+2. download <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
+3. download <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
 
 <img src="graphics/kylin-market-frontend-deploy-market-service-coontract-1.png" style="zoom:50%;" />
 
@@ -203,20 +258,75 @@ After deploying the contract, set the contract address to the **OracleMarketAddr
 ```
 
 # Adding Marketplace Services
-Continue to call the market contract on WebUI to add new market services. Open the path as **Developer->Contracts->METADATA->addService**.
+Continue to call the market contract on WebUI to add new market services. Open the path as **Developer->Contracts->METADATA->addService**. It contains kylin provided data and user-define data.
 
 ```
+Kylin-Bitmex large order list
+dataID: 1000000
+name: K-Bitmex large order list --> 0x4b2d4269746d6578206c61726765206f72646572206c697374
+desc: fetch Bitmex large order list from Kylin --> 0x6665746368204269746d6578206c61726765206f72646572206c6973742066726f6d204b796c696e
+thumb:
+https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3214861301,1731185104&fm=26&gp=0.jpg -> 0x68747470733a2f2f7373312e62647374617469632e636f6d2f37306346755853685f5131596e78476b706f574b314846366868792f69742f753d333231343836313330312c3137333131383531303426666d3d32362667703d302e6a7067
+
+BTC-Price
 dataID: 10000000
 name: BTC-Price --> 0x4254432d5072696365
-desc: fetch BTC price from cryptocompare-->0x6665746368204254432070726963652066726f6d2063727970746f636f6d70617265
+desc: fetch BTC price from cryptocompare --> 0x6665746368204254432070726963652066726f6d2063727970746f636f6d70617265
 thumb:
-http://6.eewimg.cn/mp/uploads/2018/08/23/25d989a0-a6b9-11e8-9783-001e676a89bd.jpg -> 0x687474703a2f2f362e656577696d672e636e2f6d702f75706c6f6164732f323031382f30382f32332f32356439383961302d613662392d313165382d393738332d3030316536373661383962642e6a7067
+https://n.sinaimg.cn/sinacn14/200/w500h500/20180503/1866-fzyqqiq3337874.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3230302f77353030683530302f32303138303530332f313836362d667a7971716971333333373837342e6a7067
+
+ETH-Price
+dataId: 10000001
+name: ETH-Price -->  0x4554482d5072696365
+desc: fetch ETH price from cryptocompare --> 0x6665746368204554482070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/600/w300h300/20180503/4591-fzrwiaz3053934.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3630302f77333030683330302f32303138303530332f343539312d667a727769617a333035333933342e6a7067
+
+XAP-Price
+dataId: 10000002
+name: XAP-Price -->  0x5841502d5072696365
+desc: fetch XAP price from cryptocompare --> 0x6665746368205841502070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/572/w286h286/20180503/62b0-fzyqqiq3338955.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3537322f77323836683238362f32303138303530332f363262302d667a7971716971333333383935352e6a7067
+
+BCH-Price
+dataId: 10000003
+name: BCH-Price -->  0x4243482d5072696365
+desc: fetch BCH price from cryptocompare --> 0x6665746368204243482070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/620/w311h309/20180503/0bd0-fzrwiaz3053969.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3632302f77333131683330392f32303138303530332f306264302d667a727769617a333035333936392e6a7067
+
+LTC-Price
+dataId: 10000004
+name: LTC-Price -->  0x4c54432d5072696365
+desc: fetch LTC price from cryptocompare --> 0x6665746368204c54432070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/480/w640h640/20180503/d6e2-fzyqqiq3339187.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3438302f77363430683634302f32303138303530332f643665322d667a7971716971333333393138372e6a7067
+
+EOS-Price
+dataId: 10000005
+name: EOS-Price -->  0x454f532d5072696365
+desc: fetch EOS price from cryptocompare --> 0x666574636820454f532070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/656/w328h328/20180503/25eb-fzyqqiq3339684.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3635362f77333238683332382f32303138303530332f323565622d667a7971716971333333393638342e6a7067
+
+XMR-Price
+dataId: 10000006
+name: XMR-Price -->  0x584d522d5072696365
+desc: fetch XMR price from cryptocompare --> 0x666574636820584d522070726963652066726f6d2063727970746f636f6d70617265
+thumb: 
+https://n.sinaimg.cn/sinacn14/720/w360h360/20180503/55a9-fzyqqiq3339832.jpg --> 0x68747470733a2f2f6e2e73696e61696d672e636e2f73696e61636e31342f3732302f77333630683336302f32303138303530332f353561392d667a7971716971333333393833322e6a7067
+
 ```
 
-<img src="graphics/kylin-market-frontend-add-markket-service.png" style="zoom:50%;" />
+<img src="graphics/kylin-market-services-list.jpg" style="zoom:50%;" />
 
 # Querying Marketplace Services
 
-*Network->Oracle marketplace*
+you can query services from contract calls. Input the dataId and query service info.
+
+<img src="graphics/kylin-market-contract-calls.jpg" style="zoom:50%;" />
+
+also can query from webUI *Network->Oracle marketplace*.
 
 <img src="graphics/kylin-market-frontend-query-market-service-only-btc.png" style="zoom:50%;" />
