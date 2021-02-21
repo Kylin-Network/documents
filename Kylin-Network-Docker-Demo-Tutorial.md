@@ -226,6 +226,7 @@ Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f64617
 
 you can query oracle data from chain state. *Developer->Chain state->Storage*, select *kylinOcwModule->rslt(Bytes): (AccountId,Bytes)*.
 
+TODO query proxyed data from kylin pic.
 <img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
 
 
