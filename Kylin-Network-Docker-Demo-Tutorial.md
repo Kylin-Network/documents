@@ -331,3 +331,30 @@ you can query services from contract calls. Input the dataId and query service i
 also can query from webUI *Network->Oracle marketplace*.
 
 <img src="graphics/kylin-market-frontend-query-market-service-only-btc.png" style="zoom:50%;" />
+
+
+# Statistics
+The shipped docker compose cluster contains Elasticsearch and Kibana for data analysis.
+
+For each data request sent sent to data proxy, the proxy will log those fields to Elasticsearch:
+
+* request_id
+* service_name
+* source
+* url_path
+* url_query
+* request_method
+* request_body
+* request_time
+* response_time
+* response_body
+
+Besides the data sent to Elasticsearch, there is also a kibana instance setup for visulaize request data.
+
+After setting up done, the kibana can be accessed via *http://localhost:5601*. 
+
+> Note: the Elasticsearch index and Kibana dashboard are loaded via RESTful API call after sleeping a fixed period (currently this time is 2 mins). During the test, the time is enough for ES and Kibana initalization. But if no dashboard shown in Kibana, please re-run the instance with this command:
+> $ docker-compose up init-es-index init-kibana-dashboard
+> Please wait for at least 2 mins to make sure the ES and Kibana data are imported.
+
+The landing page of Kibana shows all elements installed, please select dashboard,  choose the kylin related dashboard, then the 
