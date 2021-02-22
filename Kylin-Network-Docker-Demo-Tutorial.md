@@ -199,9 +199,9 @@ you can query oracle data from chain state. *Developer->Chain state->Storage*, s
 
 <img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
 
-But kylin provides a friendly GUI to query the chain data.
-1. Network->Oracle data sources
-2. Fill in dataId(10000000) to query the chain results of external data source.
+But kylin provides a friendly GUI to query the chain data.  
+1. Network->Oracle data sources  
+2. Fill in dataId(10000000) to query the chain results of external data source.  
 
 <img src="graphics/kylin-market-frontend-query-chain-result.png" style="zoom:50%;" />
 
@@ -209,9 +209,9 @@ But kylin provides a friendly GUI to query the chain data.
 # Add kylin provided data source
 Some data has been provided by kylin, like some exchange's orders. It is more convenience for developers to use in their Dapps. These data is proxyed by kylin.
 
-1. *Developer->Extrinsics*,
-2. the service provided by *kylinOcwModule*
-TODO 3. add proxy data source from kylin.
+1. *Developer->Extrinsics*,  
+2. the service provided by *kylinOcwModule*  
+**TODO** 3. add proxy data source from kylin.  
 
 ```
 BTC-price
@@ -226,7 +226,7 @@ Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f64617
 
 you can query oracle data from chain state. *Developer->Chain state->Storage*, select *kylinOcwModule->rslt(Bytes): (AccountId,Bytes)*.
 
-TODO query proxyed data from kylin pic.
+**TODO** query proxyed data from kylin pic.  
 <img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
 
 
@@ -236,15 +236,15 @@ Upload the previously compiled contract file wasm to the chain and perform the i
 
 For contract development and compilation, please refer to the **Compling Contracts** section of **Kylin Network Demo Tuorial** doc. 
 
-1. *Developer->Contracts->Upload WASM*
+1. *Developer->Contracts->Upload WASM*  
 2. download <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
 3. download <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
 
-<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-1.png" style="zoom:50%;" />
+<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-1.png" style="zoom:50%;" />  
 
-<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-2.png" style="zoom:50%;" />
+<img src="graphics/kylin-market-frontend-deploy-market-service-coontract-2.png" style="zoom:50%;" />  
 
-After deploying the contract, set the contract address to the **OracleMarketAddress** field in *Settings->Developer*.
+After deploying the contract, set the contract address to the **OracleMarketAddress** field in *Settings->Developer*.  
 
 ```
 {
