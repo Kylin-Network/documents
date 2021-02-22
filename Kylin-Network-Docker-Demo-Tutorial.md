@@ -1,16 +1,16 @@
 # Download Docker Image
 
-https://drive.google.com/drive/folders/1CtuRb16zX36ZafaAZt_CpQIuW8wKsbFG?usp=sharing
+Download the latest tarball from https://drive.google.com/drive/folders/1CtuRb16zX36ZafaAZt_CpQIuW8wKsbFG?usp=sharing
 
 # Load the docker image
 ```
-docker load < kylin-node.tar.gz
+docker load < kylin-node-<ver>.tar.gz
 ```
 # Download the docker-compose configuration file
+
 https://github.com/Kylin-Network/kylin-node/blob/main/scripts/docker-compose.yml
 
-By wget
-`wget https://raw.githubusercontent.com/Kylin-Network/kylin-node/main/scripts/docker-compose.yml`
+Download it by run `wget https://raw.githubusercontent.com/Kylin-Network/kylin-node/main/scripts/docker-compose.yml`
 
 # Prepare the kylin-data-proxy.env file
 It is in **the same directory as docker-compose.yml**.
@@ -19,11 +19,14 @@ It is in **the same directory as docker-compose.yml**.
 KYLIN_API_KEY=xxxxxxxxxx
 KYLIN_API_SECRET=xxxxxxxxxxxxx
 ```
+
+**Please contact us by create an issue and leave your email address to get the keys**
+
 # Start
 ```
 docker-compose up -d
 ```
-*insert-ocw* will first sleep for 30s and wait for the kylin node to start, then insert the ocw submitters. After 30s, please check the full log again.
+The job *insert-ocw* will sleep for 30s and wait for the kylin node to start, then insert the OCW submitters. After 30s, please check the full log again.
 
 # View logs
 
@@ -77,9 +80,9 @@ The test account is
 
 
 
-## Insert ocw submitters
+## Insert OCW submitters
 
-OCW requires a valid account to store the fetched data to the chain. In dev mode, you need to call `author_insertKey` to insert a valid account. If this account is not added, the following error message will be displayed at the terminal running kylin-node.
+OCW requires a valid account to store the fetched data to the chain. In DEV mode, you need to call `author_insertKey` to insert a valid account. If this account is not added, the following error message will be displayed at the terminal running kylin-node.
 
 ```
 ERROR No local accounts available. Consider adding one via `author_insertKey` RPC.
@@ -156,9 +159,9 @@ After inserting the account, you also need to **fill the account with a certain 
 # Add fetch external data source
 Kylin can upload the data source to the chain through an external call (Extrinsics).
 
-1. *Developer->Extrinsics*, 
-2. the service provided by *kylinOracleModule*
-3. the url of the data source needs to be converted to hex format.
+1. Open *Developer->Extrinsics*, 
+2. Choose the service provided by *kylinOracleModule*
+3. Fill the url of the data source, needs to be converted to hex format.
 
 ```
 BTC-price
@@ -214,8 +217,8 @@ Some data has been provided by kylin, like some exchange's orders. It is more co
 
 ```
 BTC-price
-URL: https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD
-Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d425443267473796d733d555344
+URL: http://kylin-data-proxy:8080
+Hex: 0x687474703a2f2f6b796c696e2d646174612d70726f78793a38303830
 
 ```
 <img src="graphics/kylin-market-frontend-add-kylin-source.png" style="zoom:50%;" />
@@ -241,9 +244,9 @@ Upload the previously compiled contract file wasm to the chain and perform the i
 
 For contract development and compilation, please refer to the **Compling Contracts** section of **Kylin Network Demo Tuorial** doc. 
 
-1. *Developer->Contracts->Upload WASM*  
-2. download <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
-3. download <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
+1. Open *Developer->Contracts->Upload WASM*  
+2. Get <a href="metadata.json" target="_blank">metadata.json</a> file by `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/metadata.json`  
+3. Get <a href="oracle_market.wasm" target="_blank">oracle_market.wasm</a> file  `wget https://raw.githubusercontent.com/Kylin-Network/documents/main/oracle_market.wasm` 
 
 <img src="graphics/kylin-market-frontend-deploy-market-service-coontract-1.png" style="zoom:50%;" />  
 
