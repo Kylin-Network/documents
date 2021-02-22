@@ -205,13 +205,12 @@ But kylin provides a friendly GUI to query the chain data.
 
 <img src="graphics/kylin-market-frontend-query-chain-result.png" style="zoom:50%;" />
 
-
 # Add kylin provided data source
 Some data has been provided by kylin, like some exchange's orders. It is more convenience for developers to use in their Dapps. These data is proxyed by kylin.
 
-1. *Developer->Extrinsics*,  
-2. the service provided by *kylinOcwModule*  
-**TODO** 3. add proxy data source from kylin.  
+1. Open *Developer->Extrinsics*,  
+2. Chooose the service provided by *kylinOcwModule*  
+3. Add proxy data source from kylin.  
 
 ```
 BTC-price
@@ -219,16 +218,22 @@ URL: https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD
 Hex: 0x68747470733a2f2f6d696e2d6170692e63727970746f636f6d706172652e636f6d2f646174612f70726963653f6673796d3d425443267473796d733d555344
 
 ```
-<img src="graphics/kylin-market-frontend-add-external-data-sources.png" style="zoom:50%;" />
+<img src="graphics/kylin-market-frontend-add-kylin-source.png" style="zoom:50%;" />
 
 
 # Querying kylin provided data on the chain
 
 you can query oracle data from chain state. *Developer->Chain state->Storage*, select *kylinOcwModule->rslt(Bytes): (AccountId,Bytes)*.
 
-**TODO** query proxyed data from kylin pic.  
-<img src="graphics/kylin-oracle-modules-chain-state.jpg" style="zoom:50%;" />
+<img src="graphics/kylin-ocw-modules-chain-state.png" style="zoom:50%;" />
 
+After the datasources added, we can see the related events/actions in explorer as shown below
+
+<img src="graphics/kylin-offchain-data-1.png" style="zoom:50%;" />
+
+<img src="graphics/kylin-offchain-data-2.png" style="zoom:50%;" />
+
+And that means the offchain data will be submitted on chain.
 
 # Deploy marketplace service contract
 
@@ -359,4 +364,4 @@ After setting up done, the kibana can be accessed via *http://localhost:5601*.
 
 The landing page of Kibana shows all elements installed, please select dashboard,  choose the kylin related dashboard, then the proxy stastics data can be checked on the page. The dashboard can be found here *http://localhost:5601/app/kibana#/dashboards*
 
-TODO: Dashboard Image here ![]()
+<img src="graphics/kylin-elk-dashboard.png" style="zoom:50%;" />
