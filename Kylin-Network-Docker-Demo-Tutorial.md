@@ -357,4 +357,4 @@ After setting up done, the kibana can be accessed via *http://localhost:5601*.
 > $ docker-compose up init-es-index init-kibana-dashboard
 > Please wait for at least 2 mins to make sure the ES and Kibana data are imported.
 
-The landing page of Kibana shows all elements installed, please select dashboard,  choose the kylin related dashboard, then the 
+The landing page of Kibana shows all elements installed, please select dashboard,  choose the kylin related dashboard, then the proxy stastics data can be checked on the page.
